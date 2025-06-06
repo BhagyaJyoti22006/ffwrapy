@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2025-06-07
+
 ### Added
 
 - Introduced a new `play()` method using `ffplay` for direct media playback.
@@ -46,6 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Progress callback support for long operations (encoding, splitting, etc).
 - Pure `subprocess` (no dependencies except Python & FFmpeg).
 
-[unreleased]: https://github.com/BhagyaJyoti22006/ffwrapy/compare/v1.0.2...HEAD
+[unreleased]: https://github.com/BhagyaJyoti22006/ffwrapy/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/BhagyaJyoti22006/ffwrapy/compare/v1.0.2...v1.1.0
 [1.0.2]: https://github.com/BhagyaJyoti22006/ffwrapy/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/BhagyaJyoti22006/ffwrapy/releases/tag/v1.0.1

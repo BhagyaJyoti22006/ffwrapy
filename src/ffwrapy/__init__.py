@@ -8,5 +8,5 @@ Homepage: https://github.com/BhagyaJyoti22006/ffwrapy
 from .ffmedia import FFMedia
 
 __all__ = ["FFMedia"]
-__version__ = "1.0.2"
+__version__ = "1.1.0"
 

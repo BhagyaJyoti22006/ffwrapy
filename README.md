@@ -197,9 +197,11 @@ media.custom_ffm(
 
 ```python
 from ffwrapy import FFMedia as FFM
+
 media = FFM("movie.ts", verbose=True)
 media.name("HIN", "Main", "HIN Subs", title="Demo Movie")
 media.encode("movie.mkv", thumb="00:00:05")
+
 media_encoded = FFM("movie.mkv")
 media_encoded.split("movie_clip.mp4", ss="00:10:00", to="00:15:00")
 media_encoded.split_parts("movie_part.mp4", parts=4)
