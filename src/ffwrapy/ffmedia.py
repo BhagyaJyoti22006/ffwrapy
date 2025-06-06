@@ -196,6 +196,8 @@ class FFMedia:
             f += ["-to", to]
         f += ["-map", "0"]
         f += ["-c", "copy"]
+        if replace:
+            f += ["-y"]
         f += [output]
         try:
             process = subprocess.Popen(f,

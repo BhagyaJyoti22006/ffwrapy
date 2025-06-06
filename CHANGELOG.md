@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Enabled fine-tuning of encoding behavior through `self.crf`, `self.movflags`, and `self.max_muxing_queue_size`.
 
+### Fixed
+
+- Missing `-y` flag when `replace=True` to allow overwriting output files while normal splitting.
+
 ### Changed
 
 - Allowed custom thumbnail extraction by letting thumb accept a timestamp string ("HH:MM:SS") instead of only True or False.
