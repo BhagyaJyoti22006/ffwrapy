@@ -271,7 +271,7 @@ class FFMedia:
         if self.verbose: print(self.dsh)
         return output
     
-    def play(self, seek=0, duration=None, volume=50, audio=1, video=1, subtitle=1, width=None, height=None, disable_audio=False, disable_video=False, disable_subtitle=False):
+    def play(self, seek=0, duration=None, volume=50, audio=None, video=None, subtitle=None, width=None, height=None, disable_audio=False, disable_video=False, disable_subtitle=False):
         if self.verbose: print(self.dsh)
         if self.verbose: print("Playing media...")
         f = ["ffplay", "-autoexit"]

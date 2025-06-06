@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Introduced a new `play()` method using `ffplay` for direct media playback.
 
+### Fixed
+
+- Default audio, video and subtitle stream during playback to be the first available and not "1".
+
 ### Changed
 - Description changed to include the `play` feature.
 
