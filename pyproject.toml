@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ffwrapy"
-version = "1.0.1"
+version = "1.0.2"
 description = "A fast, flexible Python wrapper for FFmpeg, FFprobe, and FFplay — fetch metadata, encode, split, and run custom commands easily with real-time progress tracking."
 readme = "README.md"
 requires-python = ">=3.7"
