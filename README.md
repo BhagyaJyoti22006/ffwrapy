@@ -22,7 +22,7 @@
 - Python 3.x
 - FFmpeg, FFprobe, and FFplay installed and available in the system PATH
 
-NOTE: Only FFprobe required at initialisation; FFmpeg required only during associated tasks like encoding, splitting, etc; FFplay required only during custom command processing
+NOTE: Only FFprobe required at initialisation; FFmpeg required only during associated tasks like encoding, splitting, etc; FFplay required only during associated tasks like playback, etc; 
 
 ```bash
 ffmpeg -version
@@ -148,6 +148,27 @@ media.thumbnail(
 - `file` The input filename whose thumbnail is to be generated; Default: None (ie media.file)
 - `replace`: Overwrite output if exists; Default : False
 
+### Playback
+
+```python
+media.play(
+    volume=50,              # Playback volume (0 to 100)
+    audio=1,                # Audio stream index to play
+)
+```
+
+- `seek`: Start playback after skipping given time (in seconds); Default: `0`
+- `duration`: Stop playback after this duration; Default: `None` (ie till end)
+- `volume`: Set audio volume for playback in percentage (0–100); Default: `50`
+- `audio`: Select audio stream index (as per media) to play; Default : None (ie first available audio stream)
+- `video`: Select video stream index (as per media) to play; Default : None (ie first available video stream)
+- `subtitle`: Select subtitle stream index (as per media) to play; Default : None (ie first available subtitle stream)
+- `width` : Resize the playback window width; Default: `None` (ie original width)
+`height` : Resize the playback window height; Default: `None` (ie original height)
+- `disable_audio` : Disable the audio stream playback; Default: `False`
+- `disable_video` : Disable the video stream playback; Default: `False`
+- `disable_subtitle` : Disable the subtitle stream playback; Default: `False`
+
 ### Custom FFmpeg/FFprobe/FFplay Command
 
 ```python
@@ -183,7 +204,10 @@ media_encoded = FFM("movie.mkv")
 media_encoded.split("movie_clip.mp4", ss="00:10:00", to="00:15:00")
 media_encoded.split_parts("movie_part.mp4", parts=4)
 media_encoded.thumbnail()
+
 media_encoded.custom_ffmedia(["ffmpeg", "-i", media_encoded.file, "-vn", "-acodec", "copy", "audio.aac"])
+
+media_encoded.play()
 ```
 
 ---
