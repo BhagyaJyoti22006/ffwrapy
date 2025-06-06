@@ -1,6 +1,6 @@
 # ffwrapy
 
-**ffwrapy** is a  fast, flexible Python wrapper for FFmpeg, FFprobe, and FFplay — fetch metadata, encode, split, and run custom commands easily with real-time progress tracking.
+**ffwrapy** is a  fast, flexible Python wrapper for FFmpeg, FFprobe, and FFplay — fetch metadata, encode, split, play and run custom commands easily with real-time progress tracking.
 
 ---
 
