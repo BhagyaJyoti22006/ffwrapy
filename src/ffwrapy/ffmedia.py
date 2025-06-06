@@ -271,6 +271,51 @@ class FFMedia:
         if self.verbose: print(self.dsh)
         return output
     
+    def play(self, seek=0, duration=None, volume=50, audio=1, video=1, subtitle=1, width=None, height=None, disable_audio=False, disable_video=False, disable_subtitle=False):
+        if self.verbose: print(self.dsh)
+        if self.verbose: print("Playing media...")
+        f = ["ffplay", "-autoexit"]
+        if seek > 0:
+            f += ["-ss", str(seek)]
+        if duration is not None:
+            f += ["-t", str(duration)]
+        volume = max(0, min(volume, 100))
+        f += ["-volume", str(volume)]
+        if len(self.audiodata)==0 or disable_audio:
+            f.append("-an")
+        else:
+            aud_index = [index["index"] for index in self.audiodata]
+            if audio not in aud_index:
+                audio = aud_index[0]
+            f += ["-ast", f"{audio}"]
+        if len(self.videodata)==0 or disable_video:
+            f.append("-vn")
+        else:
+            vid_index = [index["index"] for index in self.videodata]
+            if video not in vid_index:
+                video = vid_index[0]
+            f += ["-vst", f"{video}"]
+        if len(self.subtitles)==0 or disable_subtitle:
+            f.append("-sn")
+        else:
+            sub_index = [index["index"] for index in self.subtitles]
+            if subtitle not in sub_index:
+                subtitle = sub_index[0]
+            f += ["-sst", f"{subtitle}"]
+        if width is not None:
+            f += ["-x", str(width)]
+        if height is not None:
+            f += ["-y", str(height)]
+        f.append(self.file)
+        try:
+            process = subprocess.Popen(f)
+        except Exception as e:
+            if self.verbose: print("Error:", e)
+            if self.verbose: print(self.dsh)
+            return False
+        if self.verbose: print("Media playback finished")
+        return True
+    
     def custom_ffmedia(self, customisation, thumb=None, replace=False, progress_callback=None, callback_interval=1):
         if self.verbose: print(self.dsh)
         if self.verbose: print("Custom FFM usage:-")
