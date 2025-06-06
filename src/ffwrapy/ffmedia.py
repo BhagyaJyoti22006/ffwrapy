@@ -6,10 +6,13 @@ import time
 class FFMedia:
     def __init__(self, file, verbose=False):
         self.verbose = verbose
-        self.preset = "faster"
         self.codec_vid = "libx264"
         self.codec_aud = "aac"
         self.codec_sub = "mov_text"
+        self.crf = "23"
+        self.preset = "faster"
+        self.movflags = "+faststart"
+        self.max_muxing_queue_size = "9999"
         self.dsh = "----------------------------------------"
         self.file = file
         self.size_mb = 0
@@ -136,8 +139,8 @@ class FFMedia:
             f += [f"-metadata:s:s:{idx}", f"title={name}"]
             f += [f"-metadata:s:s:{idx}", f"language={i["language"]}"]
         f += ["-c", "copy", "-c:v", self.codec_vid, "-c:a", self.codec_aud, "-c:s", self.codec_sub,
-            "-crf", "23", "-preset", self.preset, "-movflags", "+faststart", 
-            "-max_muxing_queue_size", "9999"]
+            "-crf", self.crf, "-preset", self.preset, "-movflags", self.movflags, 
+            "-max_muxing_queue_size", self.max_muxing_queue_size]
         if replace:
             f += ["-y"]
         f += [output]

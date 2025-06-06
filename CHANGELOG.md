@@ -1,0 +1,28 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Added
+
+- Enabled fine-tuning of encoding behavior through `self.crf`, `self.movflags`, and `self.max_muxing_queue_size`.
+
+## [1.0.0] - 2025-06-04
+
+### Added
+
+- Fetch media info (duration, size, streams) via FFprobe.
+- Encode with custom codecs, presets, and metadata via FFmpeg.
+- Split files or split into parts (with/without re-encoding).
+- Generate thumbnails from videos.
+- Custom command execution for ffmpeg, ffprobe, ffplay.
+- Track naming and title setting.
+- Progress callback support for long operations (encoding, splitting, etc).
+- Pure `subprocess` (no dependencies except Python & FFmpeg).
+
+[unreleased]: https://github.com/BhagyaJyoti22006/srt-time-tweaker/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/BhagyaJyoti22006/srt-time-tweaker/releases/tag/v1.0.0

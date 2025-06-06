@@ -74,10 +74,13 @@ media.name(
     )   # Default : <the name as defined in input file ie media>
 
 # Defining Preset and Codecs
-media.preset = "faster"         # Preset to be used;        Default : "faster"
-media.codec_vid = "libx264"     # Name for video codec;     Default : "libx264"
-media.codec_aud = "aac"         # Name for audio codec;     Default : "aac"
-media.codec_sub = "mov_text"    # Name for subtitle codec;  Default : "mov_text"
+media.codec_vid = "libx264"     	# Name for video codec;     Default : "libx264"
+media.codec_aud = "aac"         	# Name for audio codec;     Default : "aac"
+media.codec_sub = "mov_text"   		# Name for subtitle codec;  Default : "mov_text"
+media.crf = "23"                	# Value for crf (0-51);     Default : "23"
+media.preset = "faster"         	# Preset to be used;        Default : "faster"
+media.movflags = "+faststart"   	# Value for moov atom;      Default : "+faststart"
+media.max_muxing_queue_size = "99"	# Max size for mux queue;   Default : "9999"
 ```
 
 ### Encoding
