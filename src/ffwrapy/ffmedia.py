@@ -86,16 +86,16 @@ class FFMedia:
         self.title = title
         return self.file
     
-    def thumbnail(self, file=None, replace=False):
+    def thumbnail(self, timestamp="00:00:05", file=None, replace=False):
         if self.verbose: print(self.dsh)
         if file is None:
             file=self.file
-        if self.verbose: print("Creating a thumbnail:-")
+        if self.verbose: print(f"Creating a thumbnail at {timestamp}:-")
         t = "ffmpeg"
         t += " -hide_banner -loglevel error -nostats"
         if replace:
             t += " -y"
-        t += f" -ss 00:00:05 -i \"{file}\" -vframes 1 -q:v 2 \"{file}.jpg\""
+        t += f" -ss {timestamp} -i \"{file}\" -vframes 1 -q:v 2 \"{file}.jpg\""
         try:
             subprocess.run(t, shell=True, check=True)
         except Exception as e:
@@ -106,7 +106,7 @@ class FFMedia:
         if self.verbose: print(self.dsh)
         return f"\"{file}.jpg\""
     
-    def encode(self, output, ss=None, to=None, thumb=False, replace=False, progress_callback=None, callback_interval=1):
+    def encode(self, output, ss=None, to=None, thumb=None, replace=False, progress_callback=None, callback_interval=1):
         if self.verbose: print(self.dsh)
         if self.verbose: print("Encoding the file:-")
         if self.file==output:
@@ -173,13 +173,13 @@ class FFMedia:
             if self.verbose: print(self.dsh)
             return False
         if self.verbose: print("Encoding finished")
-        if thumb:
-            self.thumbnail(output,replace)
+        if thumb is not None:
+            self.thumbnail(thumb,output,replace)
         else:
             if self.verbose: print(self.dsh)
         return output
     
-    def split(self, output, ss=None, to=None, thumb=False, replace=False, progress_callback=None, callback_interval=1):
+    def split(self, output, ss=None, to=None, thumb=None, replace=False, progress_callback=None, callback_interval=1):
         if self.verbose: print(self.dsh)
         if self.verbose: print("Splitting the file:-")
         if self.file==output:
@@ -226,13 +226,13 @@ class FFMedia:
             if self.verbose: print(self.dsh)
             return False
         if self.verbose: print("Splitting finished")
-        if thumb:
-            self.thumbnail(output,replace)
+        if thumb is not None:
+            self.thumbnail(thumb,output,replace)
         else:
             if self.verbose: print(self.dsh)
         return output
     
-    def split_parts(self, output, parts=2, safe_time=5, reencode=False, thumb=False, replace=False, progress_callback=None, callback_interval=1):
+    def split_parts(self, output, parts=2, safe_time=5, reencode=False, thumb=None, replace=False, progress_callback=None, callback_interval=1):
         if self.verbose: print(self.dsh)
         if self.verbose: print("Splitting file into parts:-")
         part_duration = self.duration/parts
@@ -269,7 +269,7 @@ class FFMedia:
         if self.verbose: print(self.dsh)
         return output
     
-    def custom_ffmedia(self, customisation, thumb=False, replace=False, progress_callback=None, callback_interval=1):
+    def custom_ffmedia(self, customisation, thumb=None, replace=False, progress_callback=None, callback_interval=1):
         if self.verbose: print(self.dsh)
         if self.verbose: print("Custom FFM usage:-")
         if customisation[0] not in ["ffmpeg","ffprobe","ffplay"]:
@@ -304,12 +304,12 @@ class FFMedia:
             if self.verbose: print(self.dsh)
             return False
         if self.verbose: print("Custom FFMedia usage finished")
-        if thumb:
-            self.thumbnail(output,replace)
+        if thumb is not None:
+            self.thumbnail(thumb,output,replace)
         else:
             if self.verbose: print(self.dsh)
         return True
     
-    def custom_ffm(self, customisation, thumb=False, replace=False, progress_callback=None, callback_interval=1):
+    def custom_ffm(self, customisation, thumb=None, replace=False, progress_callback=None, callback_interval=1):
         return self.custom_ffmedia(self, customisation, thumb=thumb, replace=replace, progress_callback=progress_callback, callback_interval=callback_interval)
 

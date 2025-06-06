@@ -88,14 +88,14 @@ media.max_muxing_queue_size = "99"	# Max size for mux queue;   Default : "9999"
 ```python
 media.encode(
     output="output.mp4",    # Name for output encoded file
-    thumb=True,             # Generate output.jpg after encoding
+    thumb="00:00:05",       # Timestamp in "HH:MM:SS" format to generate output.jpg from the processed video at the given time
     replace=True,           # Overwrite output if exists
     )
 ```
 - `output` Name for output encoded file
 - `ss`: Start time (string or seconds); Default : None (ie from beginning)
 - `to`: End time (string or seconds); Default : None (ie till ending)
-- `thumb`: Generate output.jpg after encoding; Default : False
+- `thumb`: Timestamp in "HH:MM:SS" format to generate output.jpg from the processed video at the given time; Default : None (ie no thumbnail generated)
 - `replace`: Overwrite output if exists; Default : False
 - `progress_callback`: Callback function to track progress; Args : (progress as a dict), (process object); Default : None
 - `callback_interval`: The interval (in seconds) between each callback; Default : 1
@@ -113,7 +113,7 @@ media.split(
 - `output` Name for output splitted file
 - `ss`: Start time (string or seconds); Default : None (ie from beginning)
 - `to`: End time (string or seconds); Default : None (ie till ending)
-- `thumb`: Generate output.jpg after encoding; Default : False
+- `thumb`: Timestamp in "HH:MM:SS" format to generate output.jpg from the processed video at the given time; Default : None (ie no thumbnail generated)
 - `replace`: Overwrite output if exists; Default : False
 - `progress_callback`: Callback function to track progress; Args : (progress as a dict), (process object); Default : None
 - `callback_interval`: The interval (in seconds) between each callback; Default : 1
@@ -132,7 +132,7 @@ media.split_parts(
 - `parts` Number of parts to split into; Default : 2
 - `safe_time` Repetion duration (in seconds) between each part to conserve any diversion; Default : 5
 - `reencode=True` Whether to reencode the file (accurate but takes time), reencode uses .encode() otherwise .split() is used which is quick but may not be accurate; Default : False
-- `thumb`: Generate output.jpg after encoding; Default : False
+- `thumb`: Timestamp in "HH:MM:SS" format to generate output.jpg from the processed video at the given time; Default : None (ie no thumbnail generated)
 - `replace`: Overwrite output if exists; Default : False
 - `progress_callback`: Callback function to track progress; Args : (progress as dict), (process object), (serial number of part as int); Default : None
 - `callback_interval`: The interval (in seconds) between each callback; Default : 1
@@ -144,6 +144,7 @@ media.thumbnail(
     replace=True    # Overwrite output if exists
     )
 ```
+- `timestamp` The timestamp in the input file at which thumbnail is to be generated; Default : "00:00:05"
 - `file` The input filename whose thumbnail is to be generated; Default: None (ie media.file)
 - `replace`: Overwrite output if exists; Default : False
 
@@ -165,7 +166,7 @@ media.custom_ffm(
     )  # Same as .custom_ffmedia()
 ```
 - `customisation` The custom cmd array for FFmpeg/FFprobe/FFplay Command
-- `thumb`: Generate output.jpg after encoding; Default : False
+- `thumb`: Timestamp in "HH:MM:SS" format to generate output.jpg from the processed video at the given time; Default : None (ie no thumbnail generated)
 - `replace`: Overwrite output if exists; Default : False
 - `progress_callback`: Callback function to track progress; Args : (progress as dict), (process object); Default : None
 - `callback_interval`: The interval (in seconds) between each callback; Default : 1
@@ -177,7 +178,7 @@ media.custom_ffm(
 from ffwrapy import FFMedia as FFM
 media = FFM("movie.ts", verbose=True)
 media.name("HIN", "Main", "HIN Subs", title="Demo Movie")
-media.encode("movie.mkv", thumb=True)
+media.encode("movie.mkv", thumb="00:00:05")
 media_encoded = FFM("movie.mkv")
 media_encoded.split("movie_clip.mp4", ss="00:10:00", to="00:15:00")
 media_encoded.split_parts("movie_part.mp4", parts=4)
